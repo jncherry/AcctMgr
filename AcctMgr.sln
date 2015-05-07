@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcctMgr", "AcctMgr\AcctMgr.csproj", "{8083BD60-587D-4207-BE0F-2376FCC74042}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest_AcctMgr", "UnitTest_AcctMgr\UnitTest_AcctMgr.csproj", "{FA535F22-D281-4C76-82C7-049695559A58}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8083BD60-587D-4207-BE0F-2376FCC74042}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8083BD60-587D-4207-BE0F-2376FCC74042}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8083BD60-587D-4207-BE0F-2376FCC74042}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8083BD60-587D-4207-BE0F-2376FCC74042}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA535F22-D281-4C76-82C7-049695559A58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA535F22-D281-4C76-82C7-049695559A58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA535F22-D281-4C76-82C7-049695559A58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA535F22-D281-4C76-82C7-049695559A58}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
