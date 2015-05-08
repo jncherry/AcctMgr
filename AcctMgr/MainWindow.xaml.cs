@@ -29,13 +29,12 @@ namespace AcctMgr
         private void btnCancelTransaction_Click(object sender, RoutedEventArgs e)
         {
             ClearAll();
-        }
-
+        }        
         
-
+        //Enter button functionality for all transaction types
         private void btnEnterTrans_Click(object sender, RoutedEventArgs e)
         {
-            double amt, cred, deb;           
+            double amt;           
 
             try
             {
@@ -44,11 +43,7 @@ namespace AcctMgr
 
                     if (Double.TryParse(txtTransAmt.Text, out amt))
                     {
-                        Double.TryParse(txtTotalDebit.Text, out deb);
-                        txtAcctBal.Text = SubAmt(amt).ToString();
-                        deb += amt;
-                        txtTotalDebit.Text = deb.ToString();
-                        ClearAll();
+                        debit(amt);
                     }
                 }
                 else if (cboTransType.SelectedIndex == 1)
@@ -56,11 +51,7 @@ namespace AcctMgr
                 
                     if (Double.TryParse(txtTransAmt.Text, out amt))
                     {
-                        Double.TryParse(txtTotalCredit.Text, out cred);
-                        txtAcctBal.Text = AddAmt(amt).ToString();
-                        cred += amt;
-                        txtTotalCredit.Text = cred.ToString();
-                        ClearAll();
+                        credit(amt);
                     }
                     else
                     {
@@ -74,19 +65,11 @@ namespace AcctMgr
                     {
                         if (rbTransTo.IsChecked == true)
                         {
-                            Double.TryParse(txtTotalCredit.Text, out cred);
-                            txtAcctBal.Text = AddAmt(amt).ToString();
-                            cred += amt;
-                            txtTotalCredit.Text = cred.ToString();
-                            ClearAll();
+                            credit(amt);
                         }
                         else if (rbTransFrom.IsChecked == true)
                         {
-                            Double.TryParse(txtTotalDebit.Text, out deb);
-                            txtAcctBal.Text = SubAmt(amt).ToString();
-                            deb += amt;
-                            txtTotalDebit.Text = deb.ToString();
-                            ClearAll();
+                            credit(amt);
                         }
                         else
                         {
@@ -102,6 +85,8 @@ namespace AcctMgr
             } 
         }
 
+
+        //Public Functions for Transactions
         public double AddAmt(double _amt)
         {
             double transAmt, newBal = 0;
@@ -155,7 +140,7 @@ namespace AcctMgr
 
         private void cboTransType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //Handle Hidden radio buttons for transfer feature
+            //Handle Hidden radio buttons, label, and combo box for transfer feature
             if (cboTransType.SelectedIndex == 2)
             {
                 rbTransFrom.Visibility = Visibility.Visible;
@@ -170,6 +155,26 @@ namespace AcctMgr
                 lblTransferAcct.Visibility = Visibility.Hidden;
                 cboTransferAcct.Visibility = Visibility.Hidden;
             }
+        }
+
+        public void debit(double amt)
+        {
+            double deb;
+            Double.TryParse(txtTotalDebit.Text, out deb);
+            txtAcctBal.Text = SubAmt(amt).ToString();
+            deb += amt;
+            txtTotalDebit.Text = deb.ToString();
+            ClearAll();
+        }
+
+        public void credit(double amt)
+        {
+            double cred;
+            Double.TryParse(txtTotalCredit.Text, out cred);
+            txtAcctBal.Text = AddAmt(amt).ToString();
+            cred += amt;
+            txtTotalCredit.Text = cred.ToString();
+            ClearAll();
         }
     }
 }
