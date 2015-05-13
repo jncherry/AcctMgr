@@ -104,16 +104,6 @@ namespace AcctMgr
             return newBal; 
         }
 
-        public void ClearAll()
-        {
-            cboAccounts.SelectedIndex = -1;
-            txtTransAmt.Text = "";
-            cboTransType.SelectedIndex = -1;
-            txtDesc.Text = "";
-            rbTransFrom.Visibility = Visibility.Hidden;
-            rbTransTo.Visibility = Visibility.Hidden;
-        }
-
         public double SubAmt(double _amt)
         {
             double transAmt, newBal = 0;
@@ -145,16 +135,21 @@ namespace AcctMgr
             {
                 rbTransFrom.Visibility = Visibility.Visible;
                 rbTransTo.Visibility = Visibility.Visible;
-                lblTransferAcct.Visibility = Visibility.Visible;
-                cboTransferAcct.Visibility = Visibility.Visible;
             }
             else
             {
                 rbTransFrom.Visibility = Visibility.Hidden;
                 rbTransTo.Visibility = Visibility.Hidden;
-                lblTransferAcct.Visibility = Visibility.Hidden;
-                cboTransferAcct.Visibility = Visibility.Hidden;
             }
+        }
+        
+        public void ClearAll()
+        {
+            txtTransAmt.Text = "";
+            cboTransType.SelectedIndex = -1;
+            txtDesc.Text = "";
+            rbTransFrom.Visibility = Visibility.Hidden;
+            rbTransTo.Visibility = Visibility.Hidden;
         }
 
         public void debit(double amt)
@@ -175,6 +170,17 @@ namespace AcctMgr
             cred += amt;
             txtTotalCredit.Text = cred.ToString();
             ClearAll();
+        }
+
+        private void AcctMgrMain_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            AcctMgr.DBCheckingDataSet dBCheckingDataSet = ((AcctMgr.DBCheckingDataSet)(this.FindResource("dBCheckingDataSet")));
+            // Load data into the table Checking. You can modify this code as needed.
+            AcctMgr.DBCheckingDataSetTableAdapters.CheckingTableAdapter dBCheckingDataSetCheckingTableAdapter = new AcctMgr.DBCheckingDataSetTableAdapters.CheckingTableAdapter();
+            dBCheckingDataSetCheckingTableAdapter.Fill(dBCheckingDataSet.Checking);
+            System.Windows.Data.CollectionViewSource checkingViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("checkingViewSource")));
+            checkingViewSource.View.MoveCurrentToFirst();
         }
     }
 }

@@ -27,5 +27,6 @@ namespace UnitTest_AcctMgr
             double value = window.SubAmt(debitAmt);
             Assert.AreEqual(value, expectedAmount);
         }
+
     }
 }
